@@ -1,0 +1,14 @@
+#datasets
+*.zip
+HDFS_v1/
+
+#Jupyter
+.ipynb_checkpoints/
+
+#Python
+__pycache__/
+*.pyc
+*.pyo
+
+#Pycharm
+.idea/
