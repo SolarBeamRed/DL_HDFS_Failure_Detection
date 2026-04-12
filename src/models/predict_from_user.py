@@ -94,25 +94,29 @@ def detect_anomalies():
 
     # Printing summary
     ###############################################
-    console.rule(characters='=', style='yellow')
-    console.print('Summary of uploaded log: ', style='green')
-    console.rule(characters='=', style='yellow')
+    print()
+    console.rule(characters='=', style='cyan')
+    console.print('SUMMARY OF UPLOADED LOG', style='green', justify='center')
+    console.rule(characters='=', style='cyan')
     console.print(f'Total blocks: {total_blocks}', style='yellow')
     console.print(f'Normal blocks: {normal_blocks}', style='green')
     console.print(f'Anomalous blocks: {anomalous_blocks}', style='red')
     console.print(f'Anomaly rate: {anomaly_rate:.6f}', style='yellow')
-    console.rule(characters='-', style='yellow')
+    console.rule(characters='-', style='cyan')
     ###############################################
 
     while True:
-        console.print('What do you want to do?\n1.Save predicted anomalies as csv\n2. See predicted anomaly blocks\n3- Save all predictions into a csv file\n4. Quit\nEnter 1, 2, 3 or 4', style=' blue')
-        ch = input().strip()
+        console.print('What do you want to do?\n1.Save predicted anomalies as csv\n2. See predicted anomaly blocks\n3. Save all predictions into a csv file\n4. Quit\nEnter 1, 2, 3 or 4: ', style=' yellow', end='')
+        ch = int(input().strip())
 
         if ch==1:
-            console.print(f'Enter name of csv file to be saved (including .csv in the name): ', end='')
-            csv_name = input()
-            anomalies.to_csv(csv_name, index=False)
-            console.print(f'File saved as {csv_name}', style='green bold')
+            if anomalous_blocks == 0:
+                print('No anomalous blocks to save!')
+            else:
+                console.print(f'Enter name of csv file to be saved (including .csv in the name): ', end='')
+                csv_name = input()
+                anomalies.to_csv(csv_name, index=False)
+                console.print(f'File saved as {csv_name}', style='green bold')
 
         elif ch == 2:
             if len(anomalies) == 0:
@@ -139,5 +143,9 @@ def detect_anomalies():
 
         else:
             console.print('Please enter a valid input!', style='#FFAC1C')
+        console.print('Continue? (y/n)', style='#FFAC1C bold')
+        temp_input = input().strip().lower()
+        if temp_input != 'y':
+            break
 
     return None
