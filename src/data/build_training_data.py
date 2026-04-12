@@ -4,6 +4,7 @@ from src.data.preprocess import process_X, process_y
 from sklearn.model_selection import train_test_split
 from torch.utils.data import Dataset, DataLoader
 import pandas as pd
+import ast
 
 class LogDataset(Dataset):
     def __init__(self, X, y):
@@ -18,7 +19,9 @@ class LogDataset(Dataset):
 
 def return_df():
     if PREPARED_DF_DIR.exists():
-        return pd.read_csv(PREPARED_DF_DIR)
+        df = pd.read_csv(PREPARED_DF_DIR)
+        df['events_sequence'] = df['events_sequence'].apply(ast.literal_eval)
+        return df
 
     df = build_dataframe(LOGFILE_DIR, training=True)
     labels_df = pd.read_csv(LABELS_DIR)

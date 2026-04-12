@@ -5,7 +5,7 @@
 "weight_decay": 1.55e-05,
 "beta1": 0.81,
 "beta2": 0.985,
-"best_test_roc": 0.99991,
+"best_test_roc": 0.99998873,
 "max_epochs":80,
 "epochs_trained":24,
 "patience":10,
