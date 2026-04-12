@@ -1,12 +1,7 @@
-BLOCKS: Basic workflow units. A set of actions happen in these blocks.
+BLOCKS: Basic workflow units. A sequence of events happen in these blocks.
 
 Goal is to predict possible anomalies for each block. Each block has several log lines, corresponding to the actions that happened in that block.
 
-Each log line has a particular structure, and different events generate log lines with different structures. Let's call these structures, templates. First task to assign an ID to each template, as a way to represent which task or process occured. Such Id is assigned to each log line for all blocks. Hence, a sequence of actions are obtained for each block.
+Each log line has a particular structure, and different events generate log lines with different structures. Let's call these structures, templates. First task is to assign an ID to each template, as a way to represent which task or process occured. Such Id is assigned to each log line for all blocks. Hence, a sequence of actions are obtained for each block.
 
 LSTMs are useful here because sequence matters in this case. Recieving, processing, complete might be a proper sequence, but Processing, Recieving, complete might indicate anomaly.
-
-Hence:
-1. Assign template ID to each log line
-2,. Sort log lines by blocks
-3. Training and Inference on one block at a time

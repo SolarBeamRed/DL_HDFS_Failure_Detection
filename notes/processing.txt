@@ -1,0 +1,21 @@
+Processing done on raw log file:
+
+1. Extract tuples of blk_id and message from each useful line, [stored into a tuple]
+2. Normalise messages to create templates. [Stored again in tuples of (blk_id, normalised_msg)]
+3. Encode messages: Assign integer ID to each message according to it's template. [Stored again in tuples of (blk_id, event_id)]
+4. Put events of same blk_id together [Stored in a dictionary with keys as blk_id and values as list of events]
+5. Create dataframe of above dictionary, and append label columns to the dataframe
+
+
+
+After dataframe is obtained:
+
+1. X and y will be sequence_events and label respectively
+Events in X are of different sizes, so they have to be padded to make same lengths. They can also be truncated. If 0 was used in event_ids, then all event_ids have to be shifted to make room for 0 to be applied as padding
+2a. [optional] If 0 is an event_id, then shift all events in X for every sequence by 1
+2b. Choose a max length, and truncate all sequences to fit max_length
+2c. Add 0 padding using torch.nn.utils.rnn.pad_sequence on X
+
+
+
+Those are all the processing outside models. Inside models, an embedded layer is used for omre processing, but that's about it
