@@ -35,12 +35,10 @@ python main.py
 3. Optionally run model summary to confirm presence of model by running option 3
 4. Perform inference by choosing option 4 and providing path of log file<br><br>
 
-If you also wish to train the model from scratch and run evaluation, then the above steps remain the exact same. 
-Additionally, you just have to place training logs, for instance, [from here](https://github.com/logpai/loghub/blob/master/HDFS#hdfs_v1)
-into the datasets directory as datasets/HDFS_v1/HDFS.log<br><br>
-You can also just change the path variable in src/utils/config.py if you want to use a different 
-directory
-
+If you also wish to train the model from scratch and run evaluation, then just run the "Train model"
+ option from main.py. It will automatically handle downloading and placing data in the
+ right place. You also have the option to download manually and place files as suggested in
+ project structure below in this README, or src/utils.config.py
 ___
 
 ###  Available User Operations
@@ -196,7 +194,11 @@ project-root/
 ├── reports/                 # Figures, Optuna study DB, results CSVs
 ├── configs/                 # Configuration files (config.json)
 ├── checkpoints/             # Saved models and training checkpoints
-├── datasets/                # Logs, labels, sample test logs (not included)
+├── datasets/                # Dataset directory (auto-downloaded if missing)
+│   └── HDFS_v1/
+│       ├── HDFS.log
+│       └── preprocessed/
+│           └── anomaly_label.csv
 │
 ├── main.py                  # Entry point (CLI menu)
 ├── requirements.txt         # Dependencies
