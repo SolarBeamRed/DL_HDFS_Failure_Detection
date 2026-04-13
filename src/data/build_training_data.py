@@ -1,6 +1,7 @@
 from src.utils.config import LOGFILE_DIR, LABELS_DIR, PREPARED_DF_DIR
 from src.data.build_dataframe import build_dataframe
 from src.data.preprocess import process_X, process_y
+from src.data.download_data import download_data
 from sklearn.model_selection import train_test_split
 from torch.utils.data import Dataset, DataLoader
 import pandas as pd
@@ -23,6 +24,7 @@ def return_df():
         df['events_sequence'] = df['events_sequence'].apply(ast.literal_eval)
         return df
 
+    download_data()
     df = build_dataframe(LOGFILE_DIR, training=True)
     labels_df = pd.read_csv(LABELS_DIR)
     labels_df.rename(columns={'BlockId': 'blk_id'}, inplace=True)
@@ -30,6 +32,7 @@ def return_df():
     df = df.merge(labels_df, on='blk_id')
     df['Label'] = df['Label'].map({'Normal': 0, 'Anomaly': 1})
 
+    df.to_csv(PREPARED_DF_DIR, index=False) # Save for future use
     return df
 
 def return_loaders():
@@ -50,14 +53,14 @@ def return_loaders():
     y_val = process_y(y_val)
     y_test = process_y(y_test)
 
-    vocab_size = max(X_train.max(), X_test.max()) + 1
+    vocab_size = max(X_train.max(), X_val.max(), X_test.max()) + 1
 
     train = LogDataset(X_train, y_train)
     val = LogDataset(X_val, y_val)
     test = LogDataset(X_test, y_test)
 
-    train_loader = DataLoader(train, batch_size=128, shuffle=True, pin_memory=True, num_workers=8, prefetch_factor=3)
-    val_loader = DataLoader(val, batch_size=128, shuffle=False, pin_memory=True, num_workers=8, prefetch_factor=3)
-    test_loader = DataLoader(test, batch_size=128, shuffle=False, pin_memory=True, num_workers=8, prefetch_factor=3)
+    train_loader = DataLoader(train, batch_size=128, shuffle=True, pin_memory=True, num_workers=4, prefetch_factor=3)
+    val_loader = DataLoader(val, batch_size=128, shuffle=False, pin_memory=True, num_workers=4, prefetch_factor=3)
+    test_loader = DataLoader(test, batch_size=128, shuffle=False, pin_memory=True, num_workers=4, prefetch_factor=3)
 
     return train_loader, val_loader, test_loader, vocab_size
