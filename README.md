@@ -80,8 +80,8 @@ ___
 After learning some theory about RNNs and LSTMs, I wanted to implement them in Pytorch to try
  things out. Was split between this idea and another one revolving around DNA. Chose to stick to this idea because I thought
  it was more practical, and also parsing always looked cool to me. Preprocessed data was available, but I wanted to
- work on raw logs, so did not use the preprocessed data. Spent prolly more than half the time 
-on the project on building clean pipelines for parsing and transforming raw log data. Then used LSTM to train on 
+ work on raw logs, so did not use the preprocessed data. Prolly spent more than half the time 
+ on building clean pipelines for parsing and transforming raw log data. Then used LSTM to train on 
 sequence of events for each block. Tried a baseline model, which already gave shockingly good results, 
 then tuned hyperparameters for a bunch of trials, and ended up with a model that I am very satisfied with.
 Everything after that was just structuring, writing .py scripts and improving visuals etc. Cool project, regex was quite fun
