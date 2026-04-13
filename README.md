@@ -163,7 +163,7 @@ Used Optuna for hyperparameter tuning. Tuned the following parameters:
 - Beta values for Adam
 - Embedding size
 - Hidden state size of LSTMs
-- Dropout rate
+- Dropout rate<br><br>
 Study consisted of 80 trials, and usage of MedianPruner() for pruning.
 The entire study optimisation consumed around 8-10 minutes of time.
 
