@@ -15,7 +15,7 @@ def print_menu():
     console.print('[underline]Available options[/]:', style="#ff6000 italic", justify='left')
     print('\n')
     console.print('1. Build, train and save model', style='#00ff02', justify='left')
-    console.print('2. Evaluate model from training set', style='#00ff02', justify='left')
+    console.print('2. Evaluate model on test set', style='#00ff02', justify='left')
     console.print('3. Obtain model summary', style='#00ff02', justify='left')
     console.print('4. Upload Log file and perform operations', style='#00ff02', justify='left')
     console.print('5. Exit', style='#00ff02', justify='left')

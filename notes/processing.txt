@@ -18,4 +18,4 @@ Events in X are of different sizes, so they have to be padded to make same lengt
 
 
 
-Those are all the processing outside models. Inside models, an embedded layer is used for omre processing, but that's about it
+Those are all the processing outside models. Inside models, an embedded layer is used for more processing, but that's about it

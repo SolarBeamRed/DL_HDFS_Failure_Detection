@@ -1,5 +1,5 @@
 {
-"model": "TunedModel",,
+"model": "TunedModel",
 "optimizer": "Adam",
 "learning_rate": 0.0058,
 "weight_decay": 1.55e-05,
@@ -9,5 +9,9 @@
 "max_epochs":80,
 "epochs_trained":24,
 "patience":10,
-"best_epoch": 14
+"best_epoch": 14,
+"embed_dim":128,
+  "hidden_size": 64,
+  "dropout": 0.3,
+  "bidirectional": "True"
 }
