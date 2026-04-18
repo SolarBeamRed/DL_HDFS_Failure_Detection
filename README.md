@@ -100,10 +100,9 @@ https://github.com/logpai/loghub/blob/master/HDFS#hdfs_v1<br>
 The log file itself is 1.5GB in size, and contains 11,175,630 lines of text.
 The corresponding labels for the log file are also available from the same source.
 <br><br>
-Note: Dataset is **not included** in the repo because of its large size. Currently, you
- have to download the log file and place it in appropriate directories yourself if you want to train a model 
-from scratch, but I might add the functionality of automatically downloading and extracting 
-the dataset in future.
+Note: Dataset is **not included** in the repo because of its large size. You don't have to download anything
+manually though, scripts are present to automatically download the dataset and place it in the right directories
+automatically when training model
 ___
 
 ## Approach
